@@ -1,2 +1,2 @@
-# ttt_ally_glow
+# [TTT] Ally Glow
 Making your allies glow in TTT.
