@@ -9,7 +9,7 @@ end)
 hook.Add("PreDrawHalos", "DetectiveHalos", function()
   if (LocalPlayer():GetRole() == ROLE_DETECTIVE and LocalPlayer():Alive()) then
     if (table.Count(detectives) > 0) then
-      halo.Add(detectives, detective_color, 1, 1, 10, true, true )
+      halo.Add(detectives, detective_color, 1, 1, 10, true, true)
     end
   end
 end)
