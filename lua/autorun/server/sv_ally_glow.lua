@@ -3,6 +3,8 @@ util.AddNetworkString("Monsters")
 util.AddNetworkString("Detectives")
 util.AddNetworkString("Jesters")
 
+CreateConVar("ttt_jester_glow", 0, 1, "Should Jesters glow for Traitors?", 0, 1)
+
 hook.Add("Tick", "GetAndSendTraitors", function()
 
   local traitors = {}
@@ -28,7 +30,7 @@ hook.Add("Tick", "GetAndSendTraitors", function()
       end
       
       -- Jester/Swapper (alive)
-      if (ply:GetRole() == ROLE_JESTER or ply:GetRole() == ROLE_SWAPPER) then
+      if (GetConVar("ttt_jester_glow"):GetBool() and (ply:GetRole() == ROLE_JESTER or ply:GetRole() == ROLE_SWAPPER)) then
         table.insert(jesters, ply)
       end
     end
