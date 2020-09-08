@@ -5,6 +5,8 @@ util.AddNetworkString("Jesters")
 
 CreateConVar("ttt_jester_glow", 0, 1, "Should Jesters glow for Traitors?", 0, 1)
 
+local showJesters = GetConVar("ttt_jester_glow"):GetBool()
+
 hook.Add("Tick", "GetAndSendTraitors", function()
 
   local traitors = {}
@@ -12,50 +14,54 @@ hook.Add("Tick", "GetAndSendTraitors", function()
   local detectives = {}
   local jesters = {}
 
-  for _, ply in pairs(player.GetAll()) do
-    if (ply:IsValid() and ply:Alive()) then
+  for _, target_ply in pairs(player.GetAll()) do
+    if (target_ply:IsValid() and target_ply:Alive()) then
+      local target_role = target_ply:GetRole()
+
       -- Traitor/Hypnotist/Assassin +Glitch (alive)
-      if (ply:GetRole() == ROLE_TRAITOR or ply:GetRole() == ROLE_HYPNOTIST or ply:GetRole() == ROLE_ASSASSIN or ply:GetRole() == ROLE_GLITCH) then
-        table.insert(traitors, ply)
+      if (target_role == ROLE_TRAITOR or target_role == ROLE_HYPNOTIST or target_role == ROLE_ASSASSIN or target_role == ROLE_GLITCH) then
+        table.insert(traitors, target_ply)
       end
 
       -- Vampire/Zombie +Glitch (alive)
-      if (ply:GetRole() == ROLE_ZOMBIE or ply:GetRole() == ROLE_VAMPIRE or ply:GetRole() == ROLE_GLITCH) then
-        table.insert(monsters, ply)
+      if (target_role == ROLE_ZOMBIE or target_role == ROLE_VAMPIRE or target_role == ROLE_GLITCH) then
+        table.insert(monsters, target_ply)
       end
 
       -- Detective (alive)
-      if (ply:GetRole() == ROLE_DETECTIVE) then
-        table.insert(detectives, ply)
+      if (target_role == ROLE_DETECTIVE) then
+        table.insert(detectives, target_ply)
       end
       
       -- Jester/Swapper (alive)
-      if (GetConVar("ttt_jester_glow"):GetBool() and (ply:GetRole() == ROLE_JESTER or ply:GetRole() == ROLE_SWAPPER)) then
-        table.insert(jesters, ply)
+      if (showJesters and (target_role == ROLE_JESTER or target_role == ROLE_SWAPPER)) then
+        table.insert(jesters, target_ply)
       end
     end
   end
 
-  for _, ent in pairs(ents.FindByClass( "prop_ragdoll" )) do
-    if (IsValid(ent)) then
+  for _, target_ent in pairs(ents.FindByClass( "prop_ragdoll" )) do
+    if (IsValid(target_ent)) then
+      local target_role = target_ent.was_role
+
       -- Traitor/Hypnotist/Assassin +Glitch (dead)
-      if (ent.was_role == ROLE_TRAITOR or ent.was_role == ROLE_HYPNOTIST or ent.was_role == ROLE_ASSASSIN or ent.was_role == ROLE_GLITCH) then
-        table.insert(traitors, ply)
+      if (target_role == ROLE_TRAITOR or target_role == ROLE_HYPNOTIST or target_role == ROLE_ASSASSIN or target_role == ROLE_GLITCH) then
+        table.insert(traitors, target_ent)
       end
 
       -- Vampire/Zombie (dead)
-      if (ent.was_role == ROLE_ZOMBIE or ent.was_role == ROLE_VAMPIRE or ent.was_role == ROLE_GLITCH) then
-        table.insert(monsters, ply)
+      if (target_role == ROLE_ZOMBIE or target_role == ROLE_VAMPIRE or target_role == ROLE_GLITCH) then
+        table.insert(monsters, target_ent)
       end
     
       -- Detective (dead)
-      if (ent.was_role == ROLE_DETECTIVE) then
-        table.insert(detectives, ent)
+      if (target_role == ROLE_DETECTIVE) then
+        table.insert(detectives, target_ent)
       end
       
       -- Jester/Swapper (dead)
-      if (ent.was_role == ROLE_JESTER or ent.was_role == ROLE_SWAPPER) then
-        table.insert(jesters, ply)
+      if (target_role == ROLE_JESTER or target_role == ROLE_SWAPPER) then
+        table.insert(jesters, target_ent)
       end
     end
   end
@@ -63,37 +69,37 @@ hook.Add("Tick", "GetAndSendTraitors", function()
   -- -- Broadcast -- --
 
   -- Traitors (Traitor/Hypnotist/Assassin +Glitch) & Jesters (to Traitor/Hypnotist/Assassin)
-  for _, ply in pairs(traitors) do
-    if (ply:IsPlayer()) then
+  for _, target_ply in pairs(traitors) do
+    if (target_ply:IsPlayer()) then
       net.Start("Traitors")
       net.WriteTable(traitors)
-      net.Send(ply)
+      net.Send(target_ply)
 
       net.Start("Jesters")
       net.WriteTable(jesters)
-      net.Send(ply)
+      net.Send(target_ply)
     end
   end
 
   -- Monsters (Vampires/Zombies +Glitch) & Jesters (to Vampires/Zombies)
-  for _, ply in pairs(monsters) do
-    if (ply:IsPlayer()) then
+  for _, target_ply in pairs(monsters) do
+    if (target_ply:IsPlayer()) then
       net.Start("Monsters")
       net.WriteTable(monsters)
-      net.Send(ply)
+      net.Send(target_ply)
 
       net.Start("Jesters")
       net.WriteTable(jesters)
-      net.Send(ply)
+      net.Send(target_ply)
     end
   end
 
   -- Detectives (to Detectives)
-  for _, ply in pairs(detectives) do
-    if (ply:IsPlayer()) then
+  for _, target_ply in pairs(detectives) do
+    if (target_ply:IsPlayer()) then
       net.Start("Detectives")
       net.WriteTable(detectives)
-      net.Send(ply)
+      net.Send(target_ply)
     end
   end
 
