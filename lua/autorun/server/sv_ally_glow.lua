@@ -75,7 +75,7 @@ hook.Add("Tick", "GetAndSendTraitors", function()
     end
   end
 
-  -- Monsters (Vampires/Zombies +Glitch) (to Vampires/Zombies)
+  -- Monsters (Vampires/Zombies +Glitch) & Jesters (to Vampires/Zombies)
   for _, ply in pairs(monsters) do
     if (ply:IsPlayer()) then
       net.Start("Monsters")
