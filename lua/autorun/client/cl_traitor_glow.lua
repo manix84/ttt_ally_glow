@@ -7,7 +7,8 @@ net.Receive("Traitors", function()
 end)
 
 hook.Add("PreDrawHalos", "TraitorHalos", function()
-  if ((LocalPlayer():GetRole() == ROLE_TRAITOR or LocalPlayer():GetRole() == ROLE_HYPNOTIST or LocalPlayer():GetRole() == ROLE_ASSASSIN) and LocalPlayer():Alive()) then
+  local ply_role = LocalPlayer():GetRole()
+  if ((ply_role == ROLE_TRAITOR or ply_role == ROLE_HYPNOTIST or ply_role == ROLE_ASSASSIN) and LocalPlayer():Alive()) then
     if (table.Count(traitors) > 0) then
       halo.Add(traitors, traitor_color, 1, 1, 10, true, true)
     end

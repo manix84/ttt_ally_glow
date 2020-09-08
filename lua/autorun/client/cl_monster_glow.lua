@@ -7,7 +7,8 @@ net.Receive("Monsters", function()
 end)
 
 hook.Add("PreDrawHalos", "MonsterHalos", function()
-  if ((LocalPlayer():GetRole() == ROLE_ZOMBIE or LocalPlayer():GetRole() == ROLE_VAMPIRE) and LocalPlayer():Alive()) then
+  local ply_role = LocalPlayer():GetRole()
+  if ((ply_role == ROLE_ZOMBIE or ply_role == ROLE_VAMPIRE) and LocalPlayer():Alive()) then
     if (table.Count(monsters) > 0) then
       halo.Add(monsters, monster_color, 1, 1, 10, true, true)
     end
