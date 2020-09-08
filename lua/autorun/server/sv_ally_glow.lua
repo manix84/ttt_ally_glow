@@ -19,8 +19,8 @@ hook.Add("Tick", "GetAndSendTraitors", function()
         table.insert(traitors, ply)
       end
 
-      -- Vampire/Zombie (alive)
-      if (ply:GetRole() == ROLE_ZOMBIE or ply:GetRole() == ROLE_VAMPIRE) then
+      -- Vampire/Zombie +Glitch (alive)
+      if (ply:GetRole() == ROLE_ZOMBIE or ply:GetRole() == ROLE_VAMPIRE or ply:GetRole() == ROLE_GLITCH) then
         table.insert(monsters, ply)
       end
 
@@ -44,7 +44,7 @@ hook.Add("Tick", "GetAndSendTraitors", function()
       end
 
       -- Vampire/Zombie (dead)
-      if (ent.was_role == ROLE_ZOMBIE or ent.was_role == ROLE_VAMPIRE) then
+      if (ent.was_role == ROLE_ZOMBIE or ent.was_role == ROLE_VAMPIRE or ent.was_role == ROLE_GLITCH) then
         table.insert(monsters, ply)
       end
     
@@ -62,7 +62,7 @@ hook.Add("Tick", "GetAndSendTraitors", function()
 
   -- -- Broadcast -- --
 
-  -- Traitors (Traitor/Hypnotist/Assassin +Glitch) & Jesters (to Traitors)
+  -- Traitors (Traitor/Hypnotist/Assassin +Glitch) & Jesters (to Traitor/Hypnotist/Assassin)
   for _, ply in pairs(traitors) do
     if (ply:IsPlayer()) then
       net.Start("Traitors")
@@ -75,11 +75,15 @@ hook.Add("Tick", "GetAndSendTraitors", function()
     end
   end
 
-  -- Monsters (to Vampires and Zombies)
+  -- Monsters (Vampires/Zombies +Glitch) (to Vampires/Zombies)
   for _, ply in pairs(monsters) do
     if (ply:IsPlayer()) then
       net.Start("Monsters")
       net.WriteTable(monsters)
+      net.Send(ply)
+
+      net.Start("Jesters")
+      net.WriteTable(jesters)
       net.Send(ply)
     end
   end
