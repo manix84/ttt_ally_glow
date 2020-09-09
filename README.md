@@ -1,5 +1,5 @@
 # [TTT] Ally Glow
-![Icon](https://raw.githubusercontent.com/manix84/ttt_ally_glow/master/images/icon/ttt_ally_glow_128x.png)
+![Icon](https://raw.githubusercontent.com/manix84/ttt_ally_glow/master/images/icon/ttt_ally_glow_128x.jpg)
 
 Give your allies a glowing halo.
 
