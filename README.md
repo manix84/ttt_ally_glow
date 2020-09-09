@@ -5,7 +5,8 @@ Give your allies a glowing halo.
 
 I designed this to work with [Custom Roles for TTT](https://steamcommunity.com/workshop/filedetails/?id=2045444087). That means the logic as to who can see who's halo is based on that.
 
-Features:
+## Features:
+
 - __Traitor Team__ (Traitors, Hypnotists, and Assassins) see:
     - Traitors, Hypnotists, and Assassins glow Red
     - Glitches glow Red (pretending to be a Traitor)
