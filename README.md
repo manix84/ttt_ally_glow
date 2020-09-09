@@ -15,9 +15,28 @@ Designed to work with [Custom Roles for TTT](https://steamcommunity.com/workshop
     - Zombies and Vampires glow Green
     - Glitches glow Green (pretending to be a Zombie)
     - Jesters and Swappers glow Pink (optional)
-- __Innocent Team__ (Innocent, Glitch, Mercenary, Phantom) see:
+- __Innocent Team__ (Innocent, Glitch, Mercenary, and Phantom) see:
     - Nothing
 - __Innocent Team__ (Detective) see:
     - Detectives glow Blue to other Detectives
 
 If you want to enable Jester Glow, you can do so by adding `ttt_jester_glow 1` to your server.cfg
+
+## Usage
+1. Install the Addon (preferably with the Steam Workshop)
+    1. Goto "[TTT] Ally Glow" on the [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=2223868490)
+    2. Click "Subscribe"
+    - OR
+    1. [Download this addon](https://github.com/manix84/ttt_alloy_glow/archive/master.zip)
+    2. Place in garrysmod/addons folder (`Steam\steamapps\common\GarrysMod\garrysmod\addons\ttt_ally_glow`)
+2. Now, you'll see your allies glow, if you're not an innocent.
+
+## Screenshots
+### Traitor see's a Traitor
+![Traitor see's a Traitor](https://i.imgur.com/e7nFX1o.jpg)
+### Detective see's a Detective
+![Detective see's a Detective](https://i.imgur.com/bMxRu0Y.jpg)
+### Vampire see's a Zombie and another Vampire
+![Vampire see's a Zombie and another Vampire](https://i.imgur.com/rQSc0Tg.jpg)
+### See it in action (On YouTube)
+[![See it in action (On YouTube)](https://i.imgur.com/p48aZsS.jpg)](https://youtu.be/SaF8h9pBDQU)
