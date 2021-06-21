@@ -31,6 +31,12 @@ If you want to enable Jester Glow, you can do so by adding `ttt_jester_glow 1` t
     2. Place in garrysmod/addons folder (`Steam\steamapps\common\GarrysMod\garrysmod\addons\ttt_ally_glow`)
 2. Now, you'll see your allies glow, if you're not an innocent.
 
+## Variables
+
+|Variable|Default|Description|
+|--------|-------|-----------|
+|`ttt_jester_glow`|0|Should Jesters glow for Traitors? (1=Yes, 0=No)|
+
 ## Screenshots
 ### Traitor see's a Traitor
 ![Traitor see's a Traitor](https://i.imgur.com/e7nFX1o.jpg)
