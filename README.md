@@ -26,7 +26,7 @@ If you want to enable Jester Glow, you can do so by adding `ttt_jester_glow 1` t
 1. Install the Addon (preferably with the Steam Workshop)
     1. Goto "[TTT] Ally Glow" on the [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=2223868490)
     2. Click "Subscribe"
-    - ***OR**
+    - **OR**
     1. [Download this addon](https://github.com/manix84/ttt_alloy_glow/archive/master.zip)
     2. Place in garrysmod/addons folder (`Steam\steamapps\common\GarrysMod\garrysmod\addons\ttt_ally_glow`)
 2. Now, you'll see your allies glow, if you're not an innocent.
